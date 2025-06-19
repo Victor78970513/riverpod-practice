@@ -46,8 +46,8 @@ class PokemonsByTypeNotifier extends StateNotifier<PokemonsByTypeState> {
   }
 }
 
-final pokemonsByTypeProvider =
-    StateNotifierProvider<PokemonsByTypeNotifier, PokemonsByTypeState>((ref) {
+final pokemonsByTypeProvider = StateNotifierProvider.autoDispose<
+    PokemonsByTypeNotifier, PokemonsByTypeState>((ref) {
   final repository = ref.watch(pokedexRepositoryProvider);
   return PokemonsByTypeNotifier(repository);
 });

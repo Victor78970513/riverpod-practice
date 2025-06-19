@@ -3,6 +3,7 @@ import 'package:riverpod_practice/core/router/routes.dart';
 import 'package:riverpod_practice/features/calculator_app/presentation/pages/calculator_page.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/pages/pokedex_menu_page.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/pages/pokemon_types_page.dart';
+import 'package:riverpod_practice/features/pokemon_app/presentation/pages/pokemons_by_type_page.dart';
 import 'package:riverpod_practice/home_page.dart';
 
 final GoRouter appRouter = GoRouter(
@@ -29,6 +30,13 @@ final GoRouter appRouter = GoRouter(
       path: AppRoutes.pokedexTypes,
       builder: (context, state) {
         return PokemonTypesPage();
+      },
+    ),
+    GoRoute(
+      path: AppRoutes.pokemonsByType,
+      builder: (context, state) {
+        final type = state.extra as String;
+        return PokemonsByTypePage(type);
       },
     )
   ],

@@ -1,11 +1,11 @@
 class PokemonByType {
   final int id;
-  final String image;
+  final String frontDefault;
   final String name;
 
   PokemonByType({
     required this.id,
-    required this.image,
+    required this.frontDefault,
     required this.name,
   });
 }

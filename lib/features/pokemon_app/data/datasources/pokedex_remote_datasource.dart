@@ -29,6 +29,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
       {required String type}) async {
     try {
       final response = await dio.get("https://pokeapi.co/api/v2/type/$type");
+      await Future.delayed(const Duration(seconds: 5));
       final pokemons = response.data["pokemon"] as List<dynamic>;
       final pokemonsByType = pokemons
           .map((pokemon) => PokemonByTypeModel.fromJson(pokemon))
