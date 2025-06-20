@@ -8,4 +8,6 @@ class AppRoutes {
   static final pokedexTypes = '/pokedex_types';
 
   static final pokemonsByType = '/pokemons_by_type';
+
+  static final pokemonInfo = '/pokemon_info';
 }
