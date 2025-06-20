@@ -8,6 +8,7 @@ class PokemonInfoModel extends PokemonInfo {
     required super.height,
     required super.weight,
     required super.urlSpecies,
+    required super.frontDefault,
   });
 
   factory PokemonInfoModel.fromJson(Map<String, dynamic> json) {
@@ -17,6 +18,7 @@ class PokemonInfoModel extends PokemonInfo {
       height: (json["height"] as int).toDouble(),
       weight: (json["weight"] as int).toDouble(),
       urlSpecies: json["species"]["url"],
+      frontDefault: json["sprites"]["other"]["home"]["front_default"],
     );
   }
 }

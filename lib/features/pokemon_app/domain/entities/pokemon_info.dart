@@ -7,6 +7,7 @@ class PokemonInfo {
   final double height;
   final double weight;
   final String urlSpecies;
+  final String frontDefault;
 
   PokemonInfo({
     required this.id,
@@ -14,6 +15,7 @@ class PokemonInfo {
     required this.height,
     required this.weight,
     required this.urlSpecies,
+    required this.frontDefault,
   });
 }
 
