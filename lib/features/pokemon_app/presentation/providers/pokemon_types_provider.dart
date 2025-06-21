@@ -33,6 +33,7 @@ class PokemonTypesNotifier extends StateNotifier<PokemonTypesState> {
 
   Future<void> fetchAllPokemonTypes() async {
     final response = await _pokedexRepository.fetchAllPokemonTypes();
+    await Future.delayed(Duration(seconds: 1));
     response.fold(
       (left) {
         state = state.copyWith(error: left.message, isLoading: false);

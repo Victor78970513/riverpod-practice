@@ -44,6 +44,7 @@ class _PokemonsByTypePageState extends ConsumerState<PokemonsByTypePage> {
                 ),
               ],
             ),
+            SizedBox(height: 10),
             pokemonsByTypeState.isLoading
                 ? Expanded(
                     child: PokemonsByTypeShimmer(),
@@ -52,7 +53,9 @@ class _PokemonsByTypePageState extends ConsumerState<PokemonsByTypePage> {
                     child: GridView.builder(
                       itemCount: pokemonsByTypeState.pokemonsByType.length,
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2),
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 12.0,
+                      ),
                       itemBuilder: (context, index) {
                         final pokemonByType =
                             pokemonsByTypeState.pokemonsByType[index];

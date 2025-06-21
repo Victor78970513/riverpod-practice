@@ -6,11 +6,9 @@ import 'package:riverpod_practice/core/utils/pokemon_types_icons.dart';
 import 'package:riverpod_practice/features/pokemon_app/domain/entities/pokemon_type.dart';
 
 class PokemonTypeWidget extends StatelessWidget {
-  final double width;
   final PokemonType pokemonType;
   const PokemonTypeWidget({
     super.key,
-    required this.width,
     required this.pokemonType,
   });
 
@@ -26,8 +24,6 @@ class PokemonTypeWidget extends StatelessWidget {
         context.push(AppRoutes.pokemonsByType, extra: pokemonType.name);
       },
       child: Container(
-        height: 65,
-        width: width,
         decoration: BoxDecoration(
             color: color, borderRadius: BorderRadius.circular(30)),
         child: Center(

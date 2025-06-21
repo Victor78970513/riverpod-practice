@@ -9,20 +9,21 @@ class PokemonByTypeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(20.0),
-      child: GestureDetector(
-        onTap: () =>
-            context.push(AppRoutes.pokemonInfo, extra: pokemonByType.id),
+    return GestureDetector(
+      onTap: () => context.push(AppRoutes.pokemonInfo, extra: pokemonByType.id),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(30),
             boxShadow: [
               BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.2),
-                  blurRadius: 10.0,
-                  blurStyle: BlurStyle.solid),
+                offset: Offset(0, 4),
+                color: Colors.black.withValues(alpha: 0.2),
+                spreadRadius: 4,
+                blurRadius: 10,
+              )
             ],
           ),
           child: Column(
@@ -43,7 +44,7 @@ class PokemonByTypeCard extends StatelessWidget {
                         "#${pokemonByType.id.toString()}",
                         style: TextStyle(
                             color: Colors.white,
-                            fontSize: 16,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -53,6 +54,7 @@ class PokemonByTypeCard extends StatelessWidget {
               Expanded(
                 child: Image.network(
                   pokemonByType.frontDefault,
+                  fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) {
                     return Image.asset("assets/no_pokemon.png");
                   },
