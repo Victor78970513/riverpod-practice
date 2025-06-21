@@ -51,12 +51,23 @@ class PokemonByTypeCard extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: Image.network(pokemonByType.frontDefault),
+                child: Image.network(
+                  pokemonByType.frontDefault,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Image.asset("assets/no_pokemon.png");
+                  },
+                ),
               ),
-              Text(
-                pokemonByType.name,
-                style: TextStyle(
-                    color: Colors.black.withValues(alpha: 0.9), fontSize: 20),
+              Padding(
+                padding: const EdgeInsets.all(12),
+                child: Text(
+                  pokemonByType.name,
+                  style: TextStyle(
+                      color: Colors.black.withValues(alpha: 0.9),
+                      fontSize: 20,
+                      overflow: TextOverflow.ellipsis),
+                  maxLines: 1,
+                ),
               ),
               SizedBox(height: 5),
             ],

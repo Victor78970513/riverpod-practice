@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/providers/pokemon_info_provider.dart';
-import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/custom_navigation_bar.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_bg.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_header.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_image.dart';
@@ -31,7 +30,6 @@ class _PokemonInfoPageState extends ConsumerState<PokemonInfoPage> {
     final pokemonInfoState = ref.watch(pokemonInfoProvider);
     final pokemonInfo = ref.watch(pokemonInfoProvider).pokemonInfo;
     return Scaffold(
-      bottomNavigationBar: CustomNavigationBar(),
       body: pokemonInfoState.isLoading
           ? CircularProgressIndicator()
           : PokemonInfoBg(
