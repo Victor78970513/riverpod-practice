@@ -7,9 +7,8 @@ class PokemonInfoImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Container(
-      // color: Colors.red,
-      height: size.height * 0.5,
+    return SizedBox(
+      height: size.height * 0.4,
       width: size.width,
       child: Center(
         child: Stack(
