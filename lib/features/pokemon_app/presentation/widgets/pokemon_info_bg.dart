@@ -38,7 +38,7 @@ class PokemonInfoBg extends ConsumerWidget {
         child: Stack(
           children: [
             Positioned(
-              bottom: -size.width * 0.5,
+              bottom: -size.width * 0.7,
               left: -size.width * 0.5,
               child: Container(
                 width: circleSize,
