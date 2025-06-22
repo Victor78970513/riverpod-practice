@@ -33,6 +33,7 @@ class _PokemonInfoPageState extends ConsumerState<PokemonInfoPage> {
     return pokemonInfoState.isLoading
         ? PokemonInfoShimmer()
         : PokemonInfoBg(
+            bgPosition: 0.7,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: SafeArea(

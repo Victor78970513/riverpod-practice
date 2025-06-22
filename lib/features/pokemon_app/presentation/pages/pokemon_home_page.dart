@@ -21,11 +21,9 @@ class PokemonHomePage extends ConsumerWidget {
     ];
     return Scaffold(
       bottomNavigationBar: CustomNavigationBar(),
-      body: Expanded(
-        child: IndexedStack(
-          index: indexBottomNavigationBar,
-          children: pages,
-        ),
+      body: IndexedStack(
+        index: indexBottomNavigationBar,
+        children: pages,
       ),
     );
   }
