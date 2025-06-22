@@ -28,6 +28,14 @@ class PokemonInfoHeader extends StatelessWidget {
             fontSize: 24,
           ),
         ),
+        Spacer(),
+        IconButton(
+          onPressed: () {},
+          icon: Icon(
+            Icons.favorite_border_outlined,
+            size: 30,
+          ),
+        )
       ],
     );
   }

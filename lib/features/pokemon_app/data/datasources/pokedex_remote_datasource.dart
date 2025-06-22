@@ -24,6 +24,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
           types.map((type) => PokemonTypeModel.fromJson(type)).toList();
       return pokemonTypes;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       throw ServerException("Error al traer los tipos de pokemon");
     }
@@ -41,6 +42,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
           .toList();
       return pokemonsByType;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       throw ServerException("Error al traer pokemones por tipo");
     }
@@ -55,6 +57,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
       final pokemonInfo = PokemonInfoModel.fromJson(response.data);
       return pokemonInfo;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       throw ServerException("Error al traer la informacion del pokemon");
     }
@@ -67,6 +70,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
       final pokemonSpecies = PokemonSpeciesModel.fromJson(response.data);
       return pokemonSpecies;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       throw ServerException("Error al traer pokemonSpecies");
     }
@@ -82,6 +86,7 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
       await _parseEvolutionChain(chainJson["chain"], [], allPaths);
       return allPaths;
     } catch (e) {
+      // ignore: avoid_print
       print(e.toString());
       throw ServerException("Error al traer las evoluciones del pokemon");
     }

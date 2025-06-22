@@ -18,7 +18,7 @@ class PokemonEvolutionsPage extends ConsumerWidget {
     return pokemonInfoState.isLoading
         ? CircularProgressIndicator()
         : PokemonInfoBg(
-            bgPosition: 0.2,
+            bgPosition: 0.23,
             showGradient: false,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
