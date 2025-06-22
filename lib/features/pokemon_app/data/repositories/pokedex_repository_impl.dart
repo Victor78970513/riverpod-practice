@@ -56,4 +56,16 @@ class PokedexRepositoryImpl implements PokedexRepository {
       return left(Failure(e.toString()));
     }
   }
+
+  @override
+  Future<Either<Failure, List<List<PokemonEvolution>>>> fetchPokemonEvolution(
+      {required String url}) async {
+    try {
+      final pokemonEvolution =
+          await remoteDatasource.fetchPokemonEvolution(url: url);
+      return right(pokemonEvolution);
+    } catch (e) {
+      return left(Failure(e.toString()));
+    }
+  }
 }

@@ -23,7 +23,7 @@ Color getPokemonColor(String colorName) {
     case 'yellow':
       return Colors.yellow;
     default:
-      return Colors.blueGrey;
+      return Colors.black;
   }
 }
 

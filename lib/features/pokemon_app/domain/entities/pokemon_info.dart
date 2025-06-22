@@ -39,10 +39,12 @@ class PokemonInfo {
 class PokemonSpecies {
   final String description;
   final Color color;
+  final String evolutionUrl;
 
   PokemonSpecies({
     required this.description,
     required this.color,
+    required this.evolutionUrl,
   });
 }
 
@@ -50,4 +52,16 @@ class PokemonMove {
   final String name;
 
   PokemonMove({required this.name});
+}
+
+class PokemonEvolution {
+  final String name;
+  final int id;
+  final String imageUrl;
+
+  PokemonEvolution({
+    required this.name,
+    required this.id,
+    required this.imageUrl,
+  });
 }

@@ -57,6 +57,7 @@ class PokemonSpeciesModel extends PokemonSpecies {
   PokemonSpeciesModel({
     required super.description,
     required super.color,
+    required super.evolutionUrl,
   });
 
   factory PokemonSpeciesModel.fromJson(Map<String, dynamic> json) {
@@ -73,6 +74,25 @@ class PokemonSpeciesModel extends PokemonSpecies {
     return PokemonSpeciesModel(
       description: desc,
       color: getPokemonColor(json["color"]["name"]),
+      evolutionUrl: json["evolution_chain"]["url"],
+    );
+  }
+}
+
+class PokemonEvolutionModel extends PokemonEvolution {
+  PokemonEvolutionModel({
+    required super.name,
+    required super.id,
+    required super.imageUrl,
+  });
+
+  factory PokemonEvolutionModel.fromJson(Map<String, dynamic> json) {
+    return PokemonEvolutionModel(
+      name: json["name"],
+      id: json["id"],
+      // imageUrl: json["sprites"]["front_default"],
+      imageUrl:
+          json["sprites"]["other"]["official-artwork"]["front_default"] ?? "",
     );
   }
 }

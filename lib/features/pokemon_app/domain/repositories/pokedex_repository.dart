@@ -17,4 +17,7 @@ abstract interface class PokedexRepository {
 
   Future<Either<Failure, PokemonSpecies>> fetchPokemonSpecies(
       {required String url});
+
+  Future<Either<Failure, List<List<PokemonEvolution>>>> fetchPokemonEvolution(
+      {required String url});
 }

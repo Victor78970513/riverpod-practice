@@ -9,6 +9,8 @@ abstract interface class PokedexRemoteDatasource {
   Future<List<PokemonByTypeModel>> fetchPokemonsByType({required String type});
   Future<PokemonInfoModel> fetchPokemonInformation({required int pokemonId});
   Future<PokemonSpeciesModel> fetchPokemonSpecies({required String url});
+  Future<List<List<PokemonEvolutionModel>>> fetchPokemonEvolution(
+      {required String url});
 }
 
 class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
@@ -67,6 +69,42 @@ class PokedexRemoteDatasourceImpl implements PokedexRemoteDatasource {
     } catch (e) {
       print(e.toString());
       throw ServerException("Error al traer pokemonSpecies");
+    }
+  }
+
+  @override
+  Future<List<List<PokemonEvolutionModel>>> fetchPokemonEvolution(
+      {required String url}) async {
+    final allPaths = <List<PokemonEvolutionModel>>[];
+    try {
+      final chainRes = await dio.get(url);
+      final chainJson = chainRes.data;
+      await _parseEvolutionChain(chainJson["chain"], [], allPaths);
+      return allPaths;
+    } catch (e) {
+      print(e.toString());
+      throw ServerException("Error al traer las evoluciones del pokemon");
+    }
+  }
+
+  Future<void> _parseEvolutionChain(
+    Map<String, dynamic> newJson,
+    List<PokemonEvolutionModel> path,
+    List<List<PokemonEvolutionModel>> accumulator,
+  ) async {
+    final name = newJson['species']['name'];
+    final detailsRes =
+        await dio.get("https://pokeapi.co/api/v2/pokemon/$name/");
+    final detailsJson = detailsRes.data;
+    final evolModel = PokemonEvolutionModel.fromJson(detailsJson);
+    final newPath = [...path, evolModel];
+    final evolvesTo = newJson["evolves_to"] as List;
+    if (evolvesTo.isEmpty) {
+      accumulator.add(newPath);
+    } else {
+      for (final next in evolvesTo) {
+        await _parseEvolutionChain(next, newPath, accumulator);
+      }
     }
   }
 }

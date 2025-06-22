@@ -21,7 +21,7 @@ class PokemonStatusWidget extends StatelessWidget {
         width: size.width,
         height: 25,
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
               title,
@@ -43,7 +43,8 @@ class PokemonStatusWidget extends StatelessWidget {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      width: maxStatValue * (statusValue / 100),
+                      width: (maxStatValue * (statusValue / 100))
+                          .clamp(0, size.width * 0.7),
                       decoration: BoxDecoration(
                         color: statusColor,
                         borderRadius: BorderRadius.circular(30),

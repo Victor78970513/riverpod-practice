@@ -7,12 +7,14 @@ class PokemonInfoState {
   final bool isLoading;
   final PokemonInfo? pokemonInfo;
   final PokemonSpecies? pokemonSpecies;
+  final List<List<PokemonEvolution>>? pokemonEvolutions;
   final String? error;
 
   PokemonInfoState({
     this.isLoading = true,
     this.pokemonInfo,
     this.pokemonSpecies,
+    this.pokemonEvolutions,
     this.error,
   });
 
@@ -20,12 +22,14 @@ class PokemonInfoState {
     bool? isLoading,
     PokemonInfo? pokemonInfo,
     PokemonSpecies? pokemonSpecies,
+    List<List<PokemonEvolution>>? pokemonEvolutions,
     String? error,
   }) {
     return PokemonInfoState(
       isLoading: isLoading ?? this.isLoading,
       pokemonInfo: pokemonInfo ?? this.pokemonInfo,
       pokemonSpecies: pokemonSpecies ?? this.pokemonSpecies,
+      pokemonEvolutions: pokemonEvolutions ?? this.pokemonEvolutions,
       error: error ?? this.error,
     );
   }
@@ -53,12 +57,19 @@ class PokemonInfoNotifier extends StateNotifier<PokemonInfoState> {
           (left) {
             state = state.copyWith(isLoading: false, error: left.message);
           },
-          (pokemonSpecies) {
-            state = state.copyWith(
-              isLoading: false,
-              pokemonInfo: pokemonInfo,
-              pokemonSpecies: pokemonSpecies,
-            );
+          (pokemonSpecies) async {
+            final pokemonEvolutions = await _pokedexRepository
+                .fetchPokemonEvolution(url: pokemonSpecies.evolutionUrl);
+            pokemonEvolutions.fold((left) {
+              state = state.copyWith(isLoading: false, error: left.message);
+            }, (pokemonEvolutions) {
+              state = state.copyWith(
+                isLoading: false,
+                pokemonInfo: pokemonInfo,
+                pokemonSpecies: pokemonSpecies,
+                pokemonEvolutions: pokemonEvolutions,
+              );
+            });
           },
         );
       },

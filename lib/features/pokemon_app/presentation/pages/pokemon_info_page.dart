@@ -6,6 +6,7 @@ import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/poke
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_image.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_tabs.dart';
 import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/pokemon_info_type_chip.dart';
+import 'package:riverpod_practice/features/pokemon_app/presentation/widgets/shimmers/pokemon_info_shimmer.dart';
 
 class PokemonInfoPage extends ConsumerStatefulWidget {
   final int pokemonId;
@@ -29,30 +30,28 @@ class _PokemonInfoPageState extends ConsumerState<PokemonInfoPage> {
   Widget build(BuildContext context) {
     final pokemonInfoState = ref.watch(pokemonInfoProvider);
     final pokemonInfo = ref.watch(pokemonInfoProvider).pokemonInfo;
-    return Scaffold(
-      body: pokemonInfoState.isLoading
-          ? CircularProgressIndicator()
-          : PokemonInfoBg(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24),
-                child: SafeArea(
-                  child: Column(
-                    children: [
-                      PokemonInfoHeader(pokemonInfo: pokemonInfo!),
-                      SizedBox(height: 25),
-                      PokemonInfoImage(
-                        imageUrl: pokemonInfo.frontDefault,
-                      ),
-                      PokemonInfoTypeChip(
-                        pokemonType: pokemonInfo.pokemonType,
-                      ),
-                      SizedBox(height: 30),
-                      Expanded(child: PokemonInfoTabs()),
-                    ],
-                  ),
+    return pokemonInfoState.isLoading
+        ? PokemonInfoShimmer()
+        : PokemonInfoBg(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: SafeArea(
+                child: Column(
+                  children: [
+                    PokemonInfoHeader(pokemonInfo: pokemonInfo!),
+                    SizedBox(height: 25),
+                    PokemonInfoImage(
+                      imageUrl: pokemonInfo.frontDefault,
+                    ),
+                    PokemonInfoTypeChip(
+                      pokemonType: pokemonInfo.pokemonType,
+                    ),
+                    SizedBox(height: 30),
+                    Expanded(child: PokemonInfoTabs()),
+                  ],
                 ),
               ),
             ),
-    );
+          );
   }
 }
