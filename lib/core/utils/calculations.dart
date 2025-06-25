@@ -4,11 +4,8 @@ double convertMetersToInches(double meters) {
 }
 
 String convertInchesToFeetAndInches(double totalInches) {
-  final int feet = (totalInches / 12).floor(); // 1 pie = 12 pulgadas
+  final int feet = (totalInches / 12).floor();
   final double remainingInches = totalInches % 12;
-
-  // Redondea las pulgadas restantes para evitar muchos decimales, e.g., "1'04""
-  // Puedes ajustar la precisión de redondeo si es necesario.
   final String formattedInches = remainingInches.toStringAsFixed(0);
 
   return "$feet'$formattedInches\"";
